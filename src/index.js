@@ -39,7 +39,27 @@ const MORSE_TABLE = {
 
 function decode(expr) {
     // write your solution here
-}
+    const length_ten = /.{10}/g
+    const array = expr.match(length_ten);
+
+    const morse_array = [];
+    array.forEach(function (element) {
+        element = element.replace(/10/g,'.').replace(/11/g,'-').replace(/00/g,'');
+        morse_array.push(element);
+    });
+
+    let string = '';
+    morse_array.forEach(function (element) {
+        if(element === '**********'){
+            string += ' ';
+        } else{
+            string += MORSE_TABLE[element];
+        }
+    });
+
+    return string;
+};
+
 
 module.exports = {
     decode
